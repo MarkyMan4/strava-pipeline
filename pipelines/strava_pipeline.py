@@ -65,7 +65,9 @@ def strava_source() -> Any:
                             "cursor_path": "start_date",
                             "initial_value": "2022-01-01T00:00:00Z",
                             # query param needs to be passed as epoch
-                            "convert": lambda dt: int(time.mktime(time.strptime(dt, "%Y-%m-%dT%H:%M:%SZ")))
+                            "convert": lambda dt: int(
+                                time.mktime(time.strptime(dt, "%Y-%m-%dT%H:%M:%SZ"))
+                            ),
                         }
                     },
                 },
@@ -85,7 +87,3 @@ def load_strava(db_file_path: str = "running.duckdb") -> None:
 
     load_info = pipeline.run(strava_source())
     print(load_info)
-
-
-if __name__ == "__main__":
-    load_strava()
