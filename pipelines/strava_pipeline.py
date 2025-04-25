@@ -41,7 +41,7 @@ def strava_source() -> Any:
             "write_disposition": "merge",
             "endpoint": {
                 "params": {
-                    "per_page": 1000,
+                    "per_page": 100,
                 },
             },
         },
@@ -65,9 +65,7 @@ def strava_source() -> Any:
                             "cursor_path": "start_date",
                             "initial_value": "2022-01-01T00:00:00Z",
                             # query param needs to be passed as epoch
-                            "convert": lambda dt: int(
-                                time.mktime(time.strptime(dt, "%Y-%m-%dT%H:%M:%SZ"))
-                            ),
+                            "convert": lambda dt: int(time.mktime(time.strptime(dt, "%Y-%m-%dT%H:%M:%SZ")))
                         }
                     },
                 },
