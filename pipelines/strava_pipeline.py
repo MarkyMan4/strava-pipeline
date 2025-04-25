@@ -47,11 +47,15 @@ def strava_source() -> Any:
         },
         "resources": [
             {
-                # TODO make this SCD
                 "name": "athlete",
                 "endpoint": {
                     "path": "/athlete",
                 },
+                "write_disposition": {
+                    "disposition": "merge",
+                    "strategy": "scd2",
+                },
+                "primary_key": "id"
             },
             {
                 "name": "activities",
